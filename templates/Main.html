@@ -4,20 +4,29 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../statics/css/bootstrap.css">
     <link rel="stylesheet" href="../statics/css/style.css">
+    <script src="../statics/js/jquery.js"></script>
     <script src="../statics/js/angular.min.js"></script>
     <script src="../statics/js/app/models.js"></script>
     <script src="../statics/js/app/app.js"></script>
     <title>My Angular project</title>
 </head>
 <body>
-    <div class="container-fluid" ng-app="playingCard">
+    <div class="container-fluid" ng-app="playingCard" >
         <div ng-controller="cardCtrl as ctrl">
             <div class="row">
                 <div class="col-sm-4"></div>
                 <div class="col-sm-4">
                     <div class="thumbnail" ng-class="ctrl.tag">
-                        <div class="caption"><h3><center >{{ ctrl.title }}</center></h3></div>
-                        <center >{{ ctrl.text }}</center>
+                        <div class="caption"><h3><center >{{ ctrl.card.title }}</center></h3></div>
+                        <img ng-show="ctrl.card.code == 0 " ng-src="{{ ctrl.card.image }}"><!-- if the card is image card -->
+                        <div ng-show="ctrl.edit==false " ng-bind="ctrl.card.description" style="text-align: center;"></div>
+                        <textarea ng-show="ctrl.edit" ng-model="ctrl.card.description" class="col-sm-12"></textarea>
+                        <div class="row">
+                            <div class="col-sm-3"></div>
+                            <div ng-show='ctrl.edit == false' class="col-sm-6 btn btn-info" ng-click="ctrl.edit = true">Edit  !!!</div>
+                            <div ng-show='ctrl.edit == true' ng-click="ctrl.edit = false;ctrl.save()" class="col-sm-6 btn btn-info" ng-click="ctrl.edit = true">Save  !!!</div>
+                            <div class="col-sm-3"></div>
+                        </div>
                     </div>
 
                 </div>
